@@ -17,7 +17,6 @@ public class SecurityConfiguration {
                 .authorizeExchange(
                         exchange ->
                                 exchange
-                                        // .pathMatchers("/eureka/**")
                                         .pathMatchers("/eureka/**")
                                         .permitAll()
                                         .pathMatchers("/api/hotels/**")
