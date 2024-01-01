@@ -34,6 +34,7 @@ public class CustomersController {
 
     @GetMapping("/getAll")
     public List<CustomerGetResponse>getAll(){
+
         return customerService.getAll();
     }
 
