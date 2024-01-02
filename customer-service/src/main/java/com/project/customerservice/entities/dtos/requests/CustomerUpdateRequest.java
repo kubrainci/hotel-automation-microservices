@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CustomerUpdateRequest {
 
+    private short  birthYear;
     private String name;
     private String lastName;
     private String userName;

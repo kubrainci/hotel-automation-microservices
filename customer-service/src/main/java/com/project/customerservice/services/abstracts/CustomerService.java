@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CustomerService {
 
-    void delete (int id);
+    void delete (String id);
 
     CustomerAddResponse signIn(CustomerAddRequest request);
 

@@ -17,7 +17,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Customer {
 
     @Id
-    private Integer Id;
+    private String Id;
+    private short birthYear;
     private String name;
     private String lastName;
     private String userName;
