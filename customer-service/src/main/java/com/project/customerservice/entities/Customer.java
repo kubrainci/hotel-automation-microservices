@@ -18,7 +18,8 @@ public class Customer {
 
     @Id
     private String Id;
-    private short birthYear;
+    private String inventoryCode;
+    private short  birthYear;
     private String name;
     private String lastName;
     private String userName;

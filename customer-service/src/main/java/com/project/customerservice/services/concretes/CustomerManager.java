@@ -2,15 +2,16 @@ package com.project.customerservice.services.concretes;
 
 import com.project.customerservice.entities.Customer;
 import com.project.customerservice.entities.dtos.requests.CustomerAddRequest;
+import com.project.customerservice.entities.dtos.requests.CustomerUpdateRequest;
 import com.project.customerservice.entities.dtos.responses.CustomerAddResponse;
 import com.project.customerservice.entities.dtos.responses.CustomerGetResponse;
+import com.project.customerservice.entities.dtos.responses.CustomerUpdateResponse;
 import com.project.customerservice.repositories.CustomerRepository;
 import com.project.customerservice.services.abstracts.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,11 +19,7 @@ import java.util.List;
 public class CustomerManager implements CustomerService {
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
-    @Override
-    public void delete(String id) {
 
-        customerRepository.deleteById(id);
-    }
 
     @Override
     public CustomerAddResponse signIn(CustomerAddRequest request) {
@@ -72,4 +69,61 @@ public class CustomerManager implements CustomerService {
 
         return customerGetResponses;
     }
+
+    @Override
+    public void delete(String id) {
+        customerRepository.deleteById(id);
+    }
+
+    @Override
+    public CustomerUpdateResponse upDate(String id, CustomerUpdateRequest request) {
+        Customer customer = customerRepository.getReferenceById(id);
+        modelMapper.map(request, customer);
+        customer = customerRepository.save(customer);
+
+        CustomerUpdateResponse customerUpdateResponse =
+                modelMapper.map(customer, CustomerUpdateResponse.class);
+        return customerUpdateResponse;
+    }
+
+    @Override
+    public CustomerGetResponse getById(String id) {
+        Customer customer = customerRepository.getReferenceById(id);
+        modelMapper.map(id, customer);
+        customer = customerRepository.save(customer);
+
+       CustomerGetResponse customerGetResponse =
+                modelMapper.map(customer, CustomerGetResponse.class);
+        return customerGetResponse;
+    }
+
+    @Override
+    public double balanceUp(String inventoryCode, double balance) {
+        Customer customer = customerRepository.getReferenceByInvCode(inventoryCode);
+        customer.setBalance(customer.getBalance() + balance);
+        customer = customerRepository.save(customer);
+        return customer.getBalance();
+    }
+
+    @Override
+    public double balanceDown(String inventoryCode, double balance) {
+        Customer customer = customerRepository.getReferenceByInvCode(inventoryCode);
+        customer.setBalance(customer.getBalance() - balance);
+        customer = customerRepository.save(customer);
+
+        return customer.getBalance();
+    }
+
+    @Override
+    public CustomerGetResponse getBalanceByCustomer(String inventoryCode) {
+        Customer customer = customerRepository.getReferenceByInvCode(inventoryCode);
+        modelMapper.map(inventoryCode, customer);
+        customer = customerRepository.save(customer);
+
+        CustomerGetResponse customerGetResponse =
+                modelMapper.map(customer, CustomerGetResponse.class);
+        return customerGetResponse;
+    }
+
+
 }

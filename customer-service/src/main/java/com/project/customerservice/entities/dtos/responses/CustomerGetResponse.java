@@ -14,5 +14,6 @@ public class CustomerGetResponse {
     private String name;
     private String lastName;
     private String userName;
+    private double balance;
 
 }

@@ -9,4 +9,8 @@ import java.util.List;
 public interface CustomerRepository extends MongoRepository<Customer,String> {
     @Override
     List<Customer> findAll();
+
+    Customer getReferenceById(String id);
+
+    Customer getReferenceByInvCode(String inventoryCode);
 }
