@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class CustomerAddRequest {
 
     private short  birthYear;
+    private String userCode;
     private String name;
     private String lastName;
     private String userName;

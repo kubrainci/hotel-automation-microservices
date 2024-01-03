@@ -71,13 +71,14 @@ public class CustomerManager implements CustomerService {
     }
 
     @Override
-    public void delete(String id) {
-        customerRepository.deleteById(id);
+    public void delete(String userCode) {
+
+        customerRepository.deleteById(userCode);
     }
 
     @Override
-    public CustomerUpdateResponse upDate(String id, CustomerUpdateRequest request) {
-        Customer customer = customerRepository.getReferenceById(id);
+    public CustomerUpdateResponse upDate(String userCode, CustomerUpdateRequest request) {
+        Customer customer = customerRepository.getReferenceByUserCode(userCode);
         modelMapper.map(request, customer);
         customer = customerRepository.save(customer);
 
@@ -87,9 +88,9 @@ public class CustomerManager implements CustomerService {
     }
 
     @Override
-    public CustomerGetResponse getById(String id) {
-        Customer customer = customerRepository.getReferenceById(id);
-        modelMapper.map(id, customer);
+    public CustomerGetResponse getByUserCode(String userCode) {
+        Customer customer = customerRepository.getReferenceByUserCode(userCode);
+        modelMapper.map(userCode, customer);
         customer = customerRepository.save(customer);
 
        CustomerGetResponse customerGetResponse =
@@ -98,16 +99,16 @@ public class CustomerManager implements CustomerService {
     }
 
     @Override
-    public double balanceUp(String inventoryCode, double balance) {
-        Customer customer = customerRepository.getReferenceByInvCode(inventoryCode);
+    public double balanceUp(String userCode, double balance) {
+        Customer customer = customerRepository.getReferenceByUserCode(userCode);
         customer.setBalance(customer.getBalance() + balance);
         customer = customerRepository.save(customer);
         return customer.getBalance();
     }
 
     @Override
-    public double balanceDown(String inventoryCode, double balance) {
-        Customer customer = customerRepository.getReferenceByInvCode(inventoryCode);
+    public double balanceDown(String userCode, double balance) {
+        Customer customer = customerRepository.getReferenceByUserCode(userCode);
         customer.setBalance(customer.getBalance() - balance);
         customer = customerRepository.save(customer);
 
@@ -115,14 +116,14 @@ public class CustomerManager implements CustomerService {
     }
 
     @Override
-    public CustomerGetResponse getBalanceByCustomer(String inventoryCode) {
-        Customer customer = customerRepository.getReferenceByInvCode(inventoryCode);
-        modelMapper.map(inventoryCode, customer);
+    public double getBalanceByCustomer(String userCode) {
+        Customer customer = customerRepository.getReferenceByUserCode(userCode);
+        modelMapper.map(userCode, customer);
         customer = customerRepository.save(customer);
 
         CustomerGetResponse customerGetResponse =
                 modelMapper.map(customer, CustomerGetResponse.class);
-        return customerGetResponse;
+        return customer.getBalance();
     }
 
 

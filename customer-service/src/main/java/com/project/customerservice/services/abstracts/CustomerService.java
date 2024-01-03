@@ -14,17 +14,19 @@ public interface CustomerService {
 
     List<CustomerGetResponse>getAll();
 
-    CustomerUpdateResponse upDate(String id, CustomerUpdateRequest request);
+    CustomerUpdateResponse upDate(String userCode , CustomerUpdateRequest request);
 
-    void delete (String id);
+    void delete (String userCode);
 
-    CustomerGetResponse getById(String id);
+    CustomerGetResponse getByUserCode(String userCode);
 
-    double balanceUp(String inventoryCode,double balance);
+    double balanceUp(String userCode,double balance);
 
-    double balanceDown(String inventoryCode, double balance);
+    double balanceDown(String userCode, double balance);
 
-    CustomerGetResponse getBalanceByCustomer(String inventoryCode);
+    double getBalanceByCustomer(String userCode);
+
+
 
 
 
