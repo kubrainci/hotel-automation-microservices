@@ -15,28 +15,30 @@ import lombok.NoArgsConstructor;
 @Data
 public class CustomerAddRequest {
 
-    @NotNull(message = "Doğum tarihiniz boş bırakılamaz.")
+    @NotNull(message = "{DateOfBirthCannotBeLeftBlank}")
     private short  birthYear;
 
-    @NotBlank(message = "Kullanıcı kodu boş bırakılamaz.")
-    @Size(min = 3,max = 5,message = "Kullancı kodu minimum 2 maksimum 5 karakterden oluşmalıdır.")
+    @NotBlank(message = "{UserCodeCannotBeLeftBlank}")
+    @Size(min = 3,max = 5,message = "{UserCodeMustMatchTheNumberOfCharacters}")
     private String userCode;
 
-    @NotBlank(message = "Kullanıcı adınız boş bırakılamaz")
+    @NotBlank(message = "{NameCannotBeLeftBlank}")
     private String name;
 
-    @NotBlank(message = "Kullanıcı soy isminiz boş bırakılamaz.")
+    @NotBlank(message = "{UserLastNameCannotBeLeftBlank}")
     private String lastName;
 
-    @NotBlank(message = "Kullanıcı isminiz boş bırakılamaz")
-    @Size(min = 3,max = 10,message = "Kullanıcı adı minimum 3 maksimum 10 haneden oluşmalıdır.")
+    @NotBlank(message = "{UserNameCannotBeLeftBlank}")
+    @Size(min = 3,max = 10,message = "{UserNameMustMatchTheNumberOfCharacters}")
     private String userName;
 
-    @NotBlank(message = "Lütfen Gmail hesabınızı yazın.")
+    @NotBlank(message = "{GmailCannotBeLeftBlank}")
     @Email(
-            message = "Email gecerli degil.",
+            message = "{EmailIsInvalid}",
             regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
-    @NotBlank(message = "Lütfen şifre oluşturun.")
+
+    @NotBlank(message = "{PasswordCannotBeLeftBlank}")
+    @Size(min = 5,max = 20,message = "{PasswordMustMatchTheNumberOfCharacters}")
     private String password;
 }
