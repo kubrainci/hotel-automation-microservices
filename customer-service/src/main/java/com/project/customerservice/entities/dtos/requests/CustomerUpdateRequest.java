@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class CustomerUpdateRequest {
 
     @NotNull(message = "{DateOfBirthCannotBeLeftBlank}")
-    private short  birthYear;
+    private Date birthYear;
 
     @NotBlank(message = "{NameCannotBeLeftBlank}")
     private String name;

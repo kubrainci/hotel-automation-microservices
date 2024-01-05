@@ -1,5 +1,6 @@
 package com.project.customerservice.services.concretes;
 
+import com.project.customerservice.core.exceptions.BusinessException;
 import com.project.customerservice.entities.Customer;
 import com.project.customerservice.entities.dtos.requests.CustomerAddRequest;
 import com.project.customerservice.entities.dtos.requests.CustomerUpdateRequest;
@@ -10,8 +11,14 @@ import com.project.customerservice.repositories.CustomerRepository;
 import com.project.customerservice.services.abstracts.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,11 +26,13 @@ import java.util.List;
 public class CustomerManager implements CustomerService {
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
+    private final MessageSource messageSource;
 
 
     @Override
     public CustomerAddResponse signIn(CustomerAddRequest request) {
-
+        customerWithSameEmailShouldNotExist(request.getEmail());
+        isItAgeAppropriateToRentAHotel(request.getBirthYear());
         Customer customerForAutoMapping = modelMapper.map(request, Customer.class);
         customerForAutoMapping = customerRepository.save(customerForAutoMapping);
         CustomerAddResponse customerAddResponse =
@@ -49,6 +58,7 @@ public class CustomerManager implements CustomerService {
 //                        .build();
         return customerAddResponse ;
     }
+
 
     @Override
     public List<CustomerGetResponse> getAll() {
@@ -126,5 +136,33 @@ public class CustomerManager implements CustomerService {
         return customer.getBalance();
     }
 
+
+    private void customerWithSameEmailShouldNotExist(String email) {
+        Customer customerWithSameEmail = customerRepository.findByEmail(email);
+        if (customerWithSameEmail != null) {
+            // Business kuralı hatası
+            throw new BusinessException(
+                    messageSource.getMessage(
+                            "customerWithSameEmailShouldNotExist", null, LocaleContextHolder.getLocale()));
+        }
+    }
+
+    private void isItAgeAppropriateToRentAHotel(Date birthYear) {
+        Customer customerAge=customerRepository.findByAge(birthYear);
+        LocalDate birthLocalDate = birthYear.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate currentDate = LocalDate.now();
+        int age = Period.between(birthLocalDate, currentDate).getYears();
+
+        if(age < 18) {
+            throw new BusinessException(messageSource.getMessage("isItAgeAppropriateToRentAHotel",
+                    new Object[] {}, LocaleContextHolder.getLocale()));
+        }
+//        Customer customerAge=customerRepository.findByAge(birthYear);
+//        LocalDate now=LocalDate.now();
+//        int age = Period.between(birthYear,now).getYears();
+//        if (age<18){
+//            throw new BusinessException(messageSource.getMessage("", LocaleContextHolder.getLocale()));
+//        }
+    }
 
 }

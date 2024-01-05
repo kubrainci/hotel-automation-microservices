@@ -9,6 +9,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -16,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class CustomerAddRequest {
 
     @NotNull(message = "{DateOfBirthCannotBeLeftBlank}")
-    private short  birthYear;
+    private Date birthYear;
 
     @NotBlank(message = "{UserCodeCannotBeLeftBlank}")
     @Size(min = 3,max = 5,message = "{UserCodeMustMatchTheNumberOfCharacters}")
