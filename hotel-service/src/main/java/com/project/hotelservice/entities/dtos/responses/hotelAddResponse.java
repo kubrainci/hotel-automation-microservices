@@ -1,23 +1,15 @@
-package com.project.hotelservice.entities;
+package com.project.hotelservice.entities.dtos.responses;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@Entity
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Hotel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+@Builder
+@Data
+public class hotelAddResponse {
 
     private String country;
 
@@ -31,4 +23,5 @@ public class Hotel {
 
     private Double dailyPrice;
 
+    private Boolean state;
 }
