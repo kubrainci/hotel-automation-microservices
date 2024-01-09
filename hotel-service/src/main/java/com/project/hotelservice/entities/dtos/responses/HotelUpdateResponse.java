@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-
-public class hotelGetResponse {
-
+public class HotelUpdateResponse {
 
     private String country;
 
@@ -19,9 +17,11 @@ public class hotelGetResponse {
 
     private String phoneNumber;
 
+    private String inventoryCode;
+
     private String star;
 
     private Double dailyPrice;
+
+    private Boolean state;
 }
-
-

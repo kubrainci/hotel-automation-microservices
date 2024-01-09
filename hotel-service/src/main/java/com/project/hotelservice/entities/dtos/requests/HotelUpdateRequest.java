@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class hotelUpdateRequest {
+public class HotelUpdateRequest {
 
     private String country;
 
