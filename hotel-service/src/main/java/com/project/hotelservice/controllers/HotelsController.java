@@ -19,10 +19,6 @@ import java.util.List;
 public class HotelsController {
     private final HotelService hotelService;
 
-    @GetMapping("/deneme")
-    public String deneme(){
-        return "deneme";
-    }
 
     @GetMapping("/getAll")
     public List<HotelGetResponse>getAll(){
@@ -50,5 +46,22 @@ public class HotelsController {
       return hotelService.getByInvCode(inventoryCode);
     }
 
+    @GetMapping("/getByStar")
+    public HotelGetResponse  getByStar(@RequestParam String star){
+                return hotelService.getByStar(star);
+    }
 
+    @GetMapping("/getByCountry")
+    public HotelGetResponse getByCountry(String country){
+        return hotelService.getByCountry(country);
+    }
+     @GetMapping("/getByDailyPrice")
+    public HotelGetResponse getByDailyPrice(double dailyPrice){
+        return hotelService.getByDailyPrice(dailyPrice);
+    }
+
+    @GetMapping("/getByHotelName")
+    public  HotelGetResponse getByHotelName(String hotelName){
+        return hotelService.getByHotelName(hotelName);
+    }
 }

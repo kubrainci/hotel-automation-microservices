@@ -67,5 +67,51 @@ public class HotelManager implements HotelService {
         return hotelGetResponse;
     }
 
+    @Override
+    public HotelGetResponse getByStar(String star) {
+        Hotel hotel=hotelRepository.getReferenceByStar(star);
+        modelMapper.map(star, hotel);
+        hotel=hotelRepository.save(hotel);
+
+        HotelGetResponse hotelGetResponse=
+                modelMapper.map(hotel, HotelGetResponse.class);
+        return hotelGetResponse;
+    }
+
+    @Override
+    public HotelGetResponse getByCountry(String country) {
+        Hotel hotel=hotelRepository.getReferenceByCountry(country);
+        modelMapper.map(country, hotel);
+        hotel=hotelRepository.save(hotel);
+
+        HotelGetResponse hotelGetResponse=
+                modelMapper.map(hotel, HotelGetResponse.class);
+        return null;
+    }
+
+    @Override
+    public HotelGetResponse getByDailyPrice(double dailyPrice) {
+        Hotel hotel=hotelRepository.getReferenceByDailyPrice(dailyPrice);
+        modelMapper.map(dailyPrice, hotel);
+        hotel=hotelRepository.save(hotel);
+
+        HotelGetResponse hotelGetResponse=
+                modelMapper.map(hotel, HotelGetResponse.class);
+        return hotelGetResponse;
+    }
+
+    @Override
+    public HotelGetResponse getByHotelName(String hotelName) {
+
+        Hotel hotel=hotelRepository.getReferenceHotelName(hotelName);
+        modelMapper.map(hotelName,hotel);
+        hotel=hotelRepository.save(hotel);
+
+        HotelGetResponse hotelGetResponse=
+             modelMapper.map(hotel, HotelGetResponse.class);
+        return hotelGetResponse;
+    }
+
+
 }
 

@@ -8,4 +8,14 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
     void deleteByInvCode(String inventoryCode);
 
     Hotel getReferenceByInvCode(String inventoryCode);
+
+    Hotel getReferenceByStar(String star);
+
+    Hotel getReferenceByCountry(String country);
+
+    Hotel getReferenceByDailyPrice(double dailyPrice);
+
+    Hotel getReferenceHotelName(String hotelName);
+
+    Hotel getReferenceState(boolean state);
 }

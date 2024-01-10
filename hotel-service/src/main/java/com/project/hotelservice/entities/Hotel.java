@@ -31,4 +31,6 @@ public class Hotel {
 
     private Double dailyPrice;
 
+    private boolean state;
+
 }

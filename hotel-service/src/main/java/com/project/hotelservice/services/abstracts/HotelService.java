@@ -20,6 +20,15 @@ public interface HotelService  {
 
     HotelGetResponse getByInvCode(String inventoryCode);
 
+    HotelGetResponse getByStar(String star);
+
+    HotelGetResponse getByCountry(String country);
+
+    HotelGetResponse getByDailyPrice(double dailyPrice);
+
+    HotelGetResponse getByHotelName(String hotelName);
+
+    HotelGetResponse getByState(boolean state);
 
 
 }
