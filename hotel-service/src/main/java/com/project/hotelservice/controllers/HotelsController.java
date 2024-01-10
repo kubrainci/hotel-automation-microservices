@@ -52,16 +52,19 @@ public class HotelsController {
     }
 
     @GetMapping("/getByCountry")
-    public HotelGetResponse getByCountry(String country){
+    public HotelGetResponse getByCountry(@RequestParam String country){
+
         return hotelService.getByCountry(country);
     }
      @GetMapping("/getByDailyPrice")
-    public HotelGetResponse getByDailyPrice(double dailyPrice){
+    public HotelGetResponse getByDailyPrice(@RequestParam double dailyPrice){
+
         return hotelService.getByDailyPrice(dailyPrice);
     }
 
     @GetMapping("/getByHotelName")
-    public  HotelGetResponse getByHotelName(String hotelName){
+    public  HotelGetResponse getByHotelName(@RequestParam  String hotelName){
+
         return hotelService.getByHotelName(hotelName);
     }
 }

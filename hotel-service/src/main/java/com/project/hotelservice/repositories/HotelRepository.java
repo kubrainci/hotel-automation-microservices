@@ -17,5 +17,5 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 
     Hotel getReferenceHotelName(String hotelName);
 
-    Hotel getReferenceState(boolean state);
+
 }

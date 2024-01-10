@@ -28,7 +28,7 @@ public interface HotelService  {
 
     HotelGetResponse getByHotelName(String hotelName);
 
-    HotelGetResponse getByState(boolean state);
+
 
 
 }
