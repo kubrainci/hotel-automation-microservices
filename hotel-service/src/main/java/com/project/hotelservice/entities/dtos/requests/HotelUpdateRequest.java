@@ -16,24 +16,24 @@ import lombok.NoArgsConstructor;
 public class HotelUpdateRequest {
 
 
-    @NotBlank(message = "Ülke adı boş bırakılamaz")
+    @NotBlank(message = "{CountryNameCannotBeLeftBlank}")
     private String country;
 
-    @NotBlank(message = "Otel ismiboş bırakılamaz")
+    @NotBlank(message = "{HotelNameCannotBeLeftBlank}")
     private String hotelName;
 
-    @NotBlank(message = "Telefon numarası boş bırakılamaz.")
+    @NotBlank(message = "{PhoneNumberCannotBeLeftBlank}")
     private String phoneNumber;
 
-    @NotBlank(message = "İnventorykod boş bırakılamaz.")
-    @Size(min = 2,max = 5 ,message = "İnventorykod minimum 2 maksimum 3 haneden oluşmak zorundadır.")
+    @NotBlank(message = "{InventoryCodeCannotBeLeftBlank}")
+    @Size(min = 2,max = 5 ,message = "{InvCodeMustMatchTheNumberOfCharacters}")
     private String inventoryCode;
 
-    @NotBlank(message = "Otelin yıldızı belirtilmek zorundadır.")
+    @NotBlank(message = "{HotelStarsCannotBeLeftBlank}")
     private String star;
 
-    @NotNull(message = "Günlük ücret boş bırakılamaz.")
-    @Min(value = 500,message = "Günlük ücret 500 den az olamaz.")
+    @NotNull(message = "{DailyPriceCannotBeLeftBlank}")
+    @Min(value = 500,message = "{MinimumPriceOfDailyWage}")
     private Double dailyPrice;
 
     private Boolean state;
