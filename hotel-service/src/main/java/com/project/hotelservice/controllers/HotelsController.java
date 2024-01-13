@@ -1,5 +1,6 @@
 package com.project.hotelservice.controllers;
 
+import com.project.hotelservice.entities.Hotel;
 import com.project.hotelservice.entities.dtos.requests.HotelAddRequest;
 import com.project.hotelservice.entities.dtos.requests.HotelUpdateRequest;
 import com.project.hotelservice.entities.dtos.responses.HotelAddResponse;
@@ -18,6 +19,7 @@ import java.util.List;
 @RequestMapping("api/hotels")
 public class HotelsController {
     private final HotelService hotelService;
+    private final HotelRepository hotelRepository;
 
 
     @GetMapping("/getAll")
@@ -37,34 +39,61 @@ public class HotelsController {
     }
 
     @DeleteMapping("/delete")
-    public  void delete(@RequestParam String inventoryCode){
-        hotelService.delete(inventoryCode);
+    public  void delete(@RequestParam int id){
+
+        hotelService.delete(id);
     }
 
     @GetMapping("/getByInvCode")
-    public HotelGetResponse getByInvCode(@RequestParam String inventoryCode){
-      return hotelService.getByInvCode(inventoryCode);
+    public HotelGetResponse getByInventoryCode(@RequestParam String inventoryCode){
+      return hotelService.getByInventoryCode(inventoryCode);
     }
 
     @GetMapping("/getByStar")
-    public HotelGetResponse  getByStar(@RequestParam String star){
-                return hotelService.getByStar(star);
+    public  List<Hotel>searchStar(@RequestParam String star){
+            List<Hotel>hotels=hotelRepository.searchStar(star);
+        return hotels;
     }
 
     @GetMapping("/getByCountry")
-    public HotelGetResponse getByCountry(@RequestParam String country){
-
-        return hotelService.getByCountry(country);
+    public List<Hotel>searchCountry(@RequestParam("name") String country){
+        List<Hotel>hotels=hotelRepository.searchCountry(country);
+        return hotels;
     }
      @GetMapping("/getByDailyPrice")
-    public HotelGetResponse getByDailyPrice(@RequestParam double dailyPrice){
+     public List<Hotel>searchDailyPrice(@RequestParam double dailyPrice){
+         List<Hotel>hotels=hotelRepository.searchDailyPrice(dailyPrice);
+         return hotels;
+     }
 
-        return hotelService.getByDailyPrice(dailyPrice);
+    @GetMapping("getByHotelName")
+    public List<Hotel>searchHotelName(@RequestParam("name") String HotelName){
+        List<Hotel>hotels=hotelRepository.searchHotelName(HotelName);
+        return hotels;
     }
 
-    @GetMapping("/getByHotelName")
-    public  HotelGetResponse getByHotelName(@RequestParam  String hotelName){
+    @GetMapping("getFromSmallToBigByDailyPrice")
+    public List<Hotel>searchFromBigToSmall(@RequestParam double dailyPrice){
+        List<Hotel>hotels=hotelRepository.searchFromSmallToBig(dailyPrice);
+        return hotels;
+    }
 
-        return hotelService.getByHotelName(hotelName);
+    @GetMapping("getAZByHotelName")
+    public List<Hotel>searchAZHotelName(@RequestParam String hotelName){
+        List<Hotel>hotels=hotelRepository.searchAZHotelName(hotelName);
+        return hotels;
+    }
+
+
+    @GetMapping("getAZByCountry")
+    public List<Hotel>searchAZCountry(@RequestParam String country){
+        List<Hotel>hotels=hotelRepository.searchAZCountry(country);
+        return hotels;
+    }
+
+    @GetMapping("getFromBigToSmallByStar")
+    public List<Hotel>searchFromBigToSmall(@RequestParam int star){
+        List<Hotel>hotels=hotelRepository.searchFromBigToSmall(star);
+        return hotels;
     }
 }

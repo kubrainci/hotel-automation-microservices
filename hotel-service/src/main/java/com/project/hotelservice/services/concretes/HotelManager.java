@@ -42,7 +42,7 @@ public class HotelManager implements HotelService {
 
     @Override
     public HotelUpdateResponse upDate(String inventoryCode, HotelUpdateRequest request) {
-        Hotel hotel=hotelRepository.getReferenceByInvCode(inventoryCode);
+        Hotel hotel=hotelRepository.getReferenceByInventoryCode(inventoryCode);
         modelMapper.map(request, hotel);
         hotel=hotelRepository.save(hotel);
         HotelUpdateResponse hotelUpdateResponse=
@@ -51,13 +51,15 @@ public class HotelManager implements HotelService {
     }
 
     @Override
-    public void delete(String inventoryCode) {
-        hotelRepository.deleteByInvCode(inventoryCode);
+    public void delete(int id) {
+
+        hotelRepository.deleteById(id);
     }
 
+
     @Override
-    public HotelGetResponse getByInvCode(String inventoryCode) {
-       Hotel hotel=hotelRepository.getReferenceByInvCode(inventoryCode);
+    public HotelGetResponse getByInventoryCode(String inventoryCode) {
+       Hotel hotel=hotelRepository.getReferenceByInventoryCode(inventoryCode);
        modelMapper.map(inventoryCode,hotel);
        hotel=hotelRepository.save(hotel);
 
@@ -67,50 +69,10 @@ public class HotelManager implements HotelService {
         return hotelGetResponse;
     }
 
-    @Override
-    public HotelGetResponse getByStar(String star) {
-        Hotel hotel=hotelRepository.getReferenceByStar(star);
-        modelMapper.map(star, hotel);
-        hotel=hotelRepository.save(hotel);
 
-        HotelGetResponse hotelGetResponse=
-                modelMapper.map(hotel, HotelGetResponse.class);
-        return hotelGetResponse;
-    }
 
-    @Override
-    public HotelGetResponse getByCountry(String country) {
-        Hotel hotel=hotelRepository.getReferenceByCountry(country);
-        modelMapper.map(country, hotel);
-        hotel=hotelRepository.save(hotel);
 
-        HotelGetResponse hotelGetResponse=
-                modelMapper.map(hotel, HotelGetResponse.class);
-        return null;
-    }
 
-    @Override
-    public HotelGetResponse getByDailyPrice(double dailyPrice) {
-        Hotel hotel=hotelRepository.getReferenceByDailyPrice(dailyPrice);
-        modelMapper.map(dailyPrice, hotel);
-        hotel=hotelRepository.save(hotel);
-
-        HotelGetResponse hotelGetResponse=
-                modelMapper.map(hotel, HotelGetResponse.class);
-        return hotelGetResponse;
-    }
-
-    @Override
-    public HotelGetResponse getByHotelName(String hotelName) {
-
-        Hotel hotel=hotelRepository.getReferenceHotelName(hotelName);
-        modelMapper.map(hotelName,hotel);
-        hotel=hotelRepository.save(hotel);
-
-        HotelGetResponse hotelGetResponse=
-             modelMapper.map(hotel, HotelGetResponse.class);
-        return hotelGetResponse;
-    }
 
 
 }

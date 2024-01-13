@@ -16,17 +16,12 @@ public interface HotelService  {
 
     HotelUpdateResponse upDate(String inventoryCode, HotelUpdateRequest request);
 
-    void delete(String inventoryCode);
+    void delete(int id);
 
-    HotelGetResponse getByInvCode(String inventoryCode);
+    HotelGetResponse getByInventoryCode(String inventoryCode);
 
-    HotelGetResponse getByStar(String star);
 
-    HotelGetResponse getByCountry(String country);
 
-    HotelGetResponse getByDailyPrice(double dailyPrice);
-
-    HotelGetResponse getByHotelName(String hotelName);
 
 
 

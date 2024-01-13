@@ -28,8 +28,8 @@ public class HotelAddRequest {
     @Size(min = 2,max = 5 ,message = "{InvCodeMustMatchTheNumberOfCharacters}")
     private String inventoryCode;
 
-    @NotBlank(message = "{HotelStarsCannotBeLeftBlank}")
-    private String star;
+    @NotNull(message = "{HotelStarsCannotBeLeftBlank}")
+    private int star;
 
      @NotNull(message = "{DailyPriceCannotBeLeftBlank}")
      @Min(value = 500,message = "{MinimumPriceOfDailyWage}")

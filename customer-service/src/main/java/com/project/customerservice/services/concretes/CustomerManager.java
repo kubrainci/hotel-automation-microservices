@@ -32,7 +32,7 @@ public class CustomerManager implements CustomerService {
     @Override
     public CustomerAddResponse signIn(CustomerAddRequest request) {
         customerWithSameEmailShouldNotExist(request.getEmail());
-        isItAgeAppropriateToRentAHotel(request.getBirthYear());
+
         Customer customerForAutoMapping = modelMapper.map(request, Customer.class);
         customerForAutoMapping = customerRepository.save(customerForAutoMapping);
         CustomerAddResponse customerAddResponse =
@@ -147,22 +147,6 @@ public class CustomerManager implements CustomerService {
         }
     }
 
-    private void isItAgeAppropriateToRentAHotel(Date birthYear) {
-        Customer customerAge=customerRepository.findByAge(birthYear);
-        LocalDate birthLocalDate = birthYear.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate currentDate = LocalDate.now();
-        int age = Period.between(birthLocalDate, currentDate).getYears();
 
-        if(age < 18) {
-            throw new BusinessException(messageSource.getMessage("isItAgeAppropriateToRentAHotel",
-                    new Object[] {}, LocaleContextHolder.getLocale()));
-        }
-//        Customer customerAge=customerRepository.findByAge(birthYear);
-//        LocalDate now=LocalDate.now();
-//        int age = Period.between(birthYear,now).getYears();
-//        if (age<18){
-//            throw new BusinessException(messageSource.getMessage("", LocaleContextHolder.getLocale()));
-//        }
-    }
 
 }

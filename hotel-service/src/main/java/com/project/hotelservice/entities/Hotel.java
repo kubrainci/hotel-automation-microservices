@@ -27,7 +27,7 @@ public class Hotel {
 
     private String inventoryCode;
 
-    private String star;
+    private int star;
 
     private Double dailyPrice;
 

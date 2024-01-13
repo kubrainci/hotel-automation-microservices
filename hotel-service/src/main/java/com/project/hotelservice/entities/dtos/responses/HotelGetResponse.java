@@ -19,7 +19,7 @@ public class HotelGetResponse {
 
     private String phoneNumber;
 
-    private String star;
+    private int star;
 
     private Double dailyPrice;
 }

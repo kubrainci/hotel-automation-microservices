@@ -19,7 +19,7 @@ public class HotelUpdateResponse {
 
     private String inventoryCode;
 
-    private String star;
+    private int star;
 
     private Double dailyPrice;
 
