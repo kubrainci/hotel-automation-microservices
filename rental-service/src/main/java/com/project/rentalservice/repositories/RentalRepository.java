@@ -1,4 +1,8 @@
 package com.project.rentalservice.repositories;
 
-public interface RentalRepository {
+import com.project.rentalservice.entities.Rental;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RentalRepository extends JpaRepository<Rental,Integer> {
+
 }
