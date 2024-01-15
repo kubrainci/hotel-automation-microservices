@@ -32,7 +32,6 @@ public class CustomerManager implements CustomerService {
     @Override
     public CustomerAddResponse signIn(CustomerAddRequest request) {
         customerWithSameEmailShouldNotExist(request.getEmail());
-
         Customer customerForAutoMapping = modelMapper.map(request, Customer.class);
         customerForAutoMapping = customerRepository.save(customerForAutoMapping);
         CustomerAddResponse customerAddResponse =

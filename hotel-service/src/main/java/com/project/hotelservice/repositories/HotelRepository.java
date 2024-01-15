@@ -10,6 +10,10 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 
     List<Hotel>findAll();
 
+    Hotel findByPhoneNumber(String phoneNumber);
+
+    Hotel findByInventoryCode(String inventoryCode);
+
     Hotel getReferenceByInventoryCode(String inventoryCode);
 
 
@@ -36,4 +40,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 
     @Query(value = "SELECT * FROM hotel order by star DESC",nativeQuery = true)
     List<Hotel>searchFromBigToSmall(int star);
+
+
+
 }
