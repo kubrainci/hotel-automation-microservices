@@ -19,9 +19,9 @@ public class Rental {
 
     LocalDate rentalDate;
 
-    LocalDate andDate;
+    LocalDate endDate;
 
-    private String rentalCode;
+    private String inventoryCode;
 
     private int customerId;
 

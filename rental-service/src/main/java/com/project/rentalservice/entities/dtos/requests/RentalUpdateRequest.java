@@ -15,6 +15,6 @@ public class RentalUpdateRequest {
 
     LocalDate rentalDate;
 
-    private String rentalCode;
+    private String inventoryCode;
 
 }

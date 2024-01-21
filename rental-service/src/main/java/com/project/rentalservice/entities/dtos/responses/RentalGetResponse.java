@@ -17,5 +17,5 @@ public class RentalGetResponse {
 
     LocalDate endDate;
 
-    private String rentalCode;
+    private String inventoryCode;
 }

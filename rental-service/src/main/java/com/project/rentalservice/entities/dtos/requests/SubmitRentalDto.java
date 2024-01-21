@@ -1,5 +1,9 @@
 package com.project.rentalservice.entities.dtos.requests;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +17,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class SubmitRentalDto {
 
-    private  String rentalCode;
+    private  String inventoryCode;
 
     private int customerId;
 
