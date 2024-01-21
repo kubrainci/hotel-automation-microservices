@@ -11,13 +11,13 @@
         <module name="rental-service" />
         <module name="discovery-server" />
         <module name="customer-service" />
+        <module name="notification-service" />
         <module name="hotel-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="notifaction-service" target="17" />
       <module name="notifaction-servie" target="17" />
-      <module name="notification-service" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
