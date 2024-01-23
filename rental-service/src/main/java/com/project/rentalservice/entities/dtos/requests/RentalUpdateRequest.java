@@ -14,10 +14,10 @@ import java.time.LocalDate;
 @Builder
 public class RentalUpdateRequest {
 
-    @NotBlank(message = "Kiralama tarihi boş bırakılamaz.")
+    @NotBlank(message = "{RentalDateCannotBeLeftBlank}")
     LocalDate rentalDate;
 
-    @NotBlank(message = "İnventory kod boş bırakılamaz.")
+    @NotBlank(message = "{InventoryCodeCannotBeLeftBlank}")
     private String inventoryCode;
 
 }

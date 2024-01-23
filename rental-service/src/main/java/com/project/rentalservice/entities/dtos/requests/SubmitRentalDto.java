@@ -18,11 +18,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class SubmitRentalDto {
 
-    @NotBlank(message = "İnventory kod boş bırakılamaz.")
+    @NotBlank(message = "{InventoryCodeCannotBeLeftBlank}")
     private  String inventoryCode;
 
     private int customerId;
 
-    @NotBlank(message = "Kiralamanın son tarihi boş bırakılamaz.")
+    @NotBlank(message = "{EndDateCannotBeLeftBlank}")
     private LocalDate endDate;
 }
